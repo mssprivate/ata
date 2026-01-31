@@ -1,0 +1,82 @@
+[
+    {
+        "Imagem": "imagens/Bolsonaro.png",
+        "Nome": "Bolsonaro",
+        "Frase": "Eu faço o que eu quiser, taokey?",
+        "Estado": "Vivo",
+        "Raça": "Humano",
+        "Nacionalidade": "Estadunidense",
+        "Ocupação": [
+            "Político",
+            "Portador do Minotauro"
+        ],
+        "Associações": [
+            "Minotauro",
+            "Minus City",
+            "Portador de um Deus",
+            "Rakin"
+        ],
+        "Maior_Status": [
+            "Brigar",
+            "Força",
+            "Constituição"
+        ]
+    },
+        
+    {
+        "Imagem": "imagens/Cacique.png",
+        "Nome": "Cacique Miguelino Drácula",
+        "Frase": "Rakin...",
+        "Estado": "Morto",
+        "Raça": "Vampiro",
+        "Nacionalidade": "Chinês",
+        "Ocupação": [
+            "Padre"
+        ],
+        "Associações": [
+            "Aluno de Xaj",
+            "Drácula",
+            "Inimigo do Abismo",
+            "Templo de Nosso Senhor da Luz",
+            "Rakin"
+        ],
+        "Maior_Status": [
+            "Força",
+            "Constituição"
+        ]
+    },
+
+
+    {
+        "Imagem": "imagens/Bill.png",
+        "Nome": "Bill Gates",
+        "Frase": "🤷",
+        "Estado": "Vivo",
+        "Raça": "Error",
+        "Nacionalidade": "Egípcio",
+        "Ocupação": [
+            "Ex-presidiário",
+            "Ladrão",
+            "Portador da Apófis",
+            "Programador"
+        ],
+        "Associações": [
+            "Apófis",
+            "Minus City",
+            "Nemus",
+            "Portador de um Deus",
+            "Rakin",
+            "Usuário do Abismo"
+        ],
+        "Maior_Status": [
+            "Destreza",
+            "Poder"
+        ]
+    }
+
+
+
+
+
+
+]

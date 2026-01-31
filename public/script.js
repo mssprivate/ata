@@ -1,12 +1,25 @@
-fetch("http://localhost:3000/personagens")
-  .then(res => res.json())
-  .then(dados => console.log(dados));
+let personagensClient = [];
+async function carregarPersonagensClient() {
+  try {
+    const res = await fetch("personagem.json");
+    const data = await res.json();
+    personagensClient = Array.isArray(data) ? data : [data];
+    console.log("Personagens carregados (client):", personagensClient);
+  } catch (err) {
+    console.error("Erro ao carregar personagem.json:", err);
+    personagensClient = [];
+  }
+}
+
+carregarPersonagensClient();
 
 
 let personagem_do_dia;  
 async function carregarPersonagem() {
-  const persona = await fetch("http://localhost:3000/personagem/Bolsonaro");
-  personagem_do_dia = await persona.json();
+  if (!personagensClient || personagensClient.length === 0) {
+    await carregarPersonagensClient();
+  }
+  personagem_do_dia = personagensClient.find(p => p && p.Nome && p.Nome.toLowerCase() === "bolsonaro");
 }
 carregarPersonagem();
 
@@ -18,17 +31,13 @@ input.addEventListener("keydown", async (e) => {
     const nome = input.value;
     input.value = "";
 
-    const res = await fetch(`http://localhost:3000/personagem/${nome}`);
-    const personagem = await res.json();
+    // Busca localmente no JSON carregado (case-insensitive)
+    if (!personagensClient || personagensClient.length === 0) await carregarPersonagensClient();
+    const personagem = personagensClient.find(p => p && p.Nome && p.Nome.toLowerCase() === nome.toLowerCase());
     
     
     if (!personagem) return;
-    const maior_status_formatado = personagem.Maior_Status.join(", ");
-    const ocupacao_formatada = personagem.Ocupação.join(", ");
-    const associacoes_formatada = personagem.Associações.join(", ");
-
-    const row_maior_status = maior_status_formatado.split(", ");
-    const qtd_row_maior_status = row_maior_status.length;
+  
 
     kekw.insertAdjacentHTML(
       "afterbegin",
@@ -39,11 +48,11 @@ input.addEventListener("keydown", async (e) => {
               <h2 class="frase">"${personagem.Frase}"</h2>
             </div>
             <div class="infos-basicas">
-              <p class="estado-p">Estado</p>
+              <p class="estado-p informacao">Estado</p>
               <p class="estado">${personagem.Estado}</p>
-              <p class="raça-p">Raça</p>
+              <p class="raça-p informacao">Raça</p>
               <p class="raça">${personagem.Raça}</p>
-              <p class="nacionalidade-p">Nacionalidade</p>
+              <p class="nacionalidade-p informacao">Nacionalidade</p>
               <p class="nacionalidade">${personagem.Nacionalidade}</p>
             </div>
             <div class="infos-maior-status">
@@ -53,7 +62,6 @@ input.addEventListener("keydown", async (e) => {
               <!-- Conteúdo dinâmico será inserido aqui -->
             </div>
             <div class="infos-associacoes">
-              <p class="associacoes">Associações: ${associacoes_formatada}</p>
             </div>
           </div>
           <div class="imagem">
@@ -61,43 +69,72 @@ input.addEventListener("keydown", async (e) => {
           </div>
       </div>`
     );
- /* 
-    const associacoes = kekw.querySelector(".associacoes");
+ 
     const estado = kekw.querySelector(".estado");
     const raça = kekw.querySelector(".raça");
     const nacionalidade = kekw.querySelector(".nacionalidade");
-    const maior_status = kekw.querySelector(".maior-status");
-    const ocupacao = kekw.querySelector(".ocupacao");
-*/
+    
     const infos_maior_status = kekw.querySelector(".infos-maior-status");
-    setColunasDinamicas(infos_maior_status, qtd_row_maior_status);
-    const maior_status_array = personagem.Maior_Status; // array original
-
-    const maiorStatusDiv = kekw.querySelector('.infos-maior-status');
-    maiorStatusDiv.innerHTML = `
-      <p class="maior-status-p">Maior Status</p>
+    setColunasDinamicas(infos_maior_status, personagem.Maior_Status.length);
+    const maior_status_array = personagem.Maior_Status; 
+    infos_maior_status.innerHTML = `
+      <p class="maior-status-p informacao">Maior Status</p>
       ${maior_status_array.map(status => `<p class="maior-status">${status}</p>`).join('')}
     `;
-    setMeioDinamico(kekw.querySelector('.maior-status-p'), qtd_row_maior_status);    
-
+    
     const infos_ocupacao = kekw.querySelector(".infos-ocupacao");
     setColunasDinamicas(infos_ocupacao, personagem.Ocupação.length);
-    const infos_ocupacao_array = personagem.Ocupação; // array original
-
-    const ocupacaoDiv = kekw.querySelector('.infos-ocupacao');
-    ocupacaoDiv.innerHTML = `
-      <p class="ocupacao-p">Ocupação</p>
-      ${personagem.Ocupação.map(ocupacao => `<p class="ocupacao">${ocupacao}</p>`).join('')}
+    const infos_ocupacao_array = personagem.Ocupação; 
+    infos_ocupacao.innerHTML = `
+      <p class="ocupacao-p informacao">Ocupação</p>
+      ${infos_ocupacao_array.map(ocupacao => `<p class="ocupacao">${ocupacao}</p>`).join('')}
     `;
-    setMeioDinamico(kekw.querySelector('.ocupacao-p'), personagem.Ocupação.length);
-/*    
+
+    const infos_associacoes = kekw.querySelector(".infos-associacoes");
+    setColunasDinamicas(infos_associacoes, personagem.Associações.length);
+    const infos_associacoes_array = personagem.Associações; 
+    infos_associacoes.innerHTML = `
+      <p class="associacoes-p informacao">Associações</p>
+      ${infos_associacoes_array.map(associacao => `<p class="associacoes">${associacao}</p>`).join('')}
+    `;
+  
+
+    if (!personagem_do_dia) await carregarPersonagem();
+
     compararValores(personagem.Estado, personagem_do_dia.Estado, estado);
     compararValores(personagem.Raça, personagem_do_dia.Raça, raça);
     compararValores(personagem.Nacionalidade, personagem_do_dia.Nacionalidade, nacionalidade);
-    compararValores(personagem.Maior_Status, personagem_do_dia.Maior_Status, maior_status);
-    compararValores(personagem.Ocupação, personagem_do_dia.Ocupação, ocupacao); 
-    compararValores(personagem.Associações, personagem_do_dia.Associações, associacoes);
-*/
+
+    if (!Array.isArray(personagem.Maior_Status)){
+      compararValores(personagem.Maior_Status, personagem_do_dia.Maior_Status, infos_maior_status);
+    } else {
+      const maiorStatusElems = infos_maior_status.querySelectorAll('.maior-status');
+      maiorStatusElems.forEach(elem => {
+        const texto = elem.textContent.trim();
+        compararValoresArray([texto], personagem_do_dia.Maior_Status, elem);
+      });
+    }
+
+
+    if (!Array.isArray(personagem.Ocupação)){
+      compararValores(personagem.Ocupação, personagem_do_dia.Ocupação, infos_ocupacao);
+    } else {
+      const ocupacaoElems = infos_ocupacao.querySelectorAll('.ocupacao');
+      ocupacaoElems.forEach(elem => {
+        const texto = elem.textContent.trim();
+        compararValoresArray([texto], personagem_do_dia.Ocupação, elem);
+      });
+    }
+
+    if (!Array.isArray(personagem.Associações)){
+     compararValores(personagem.Associações, personagem_do_dia.Associações, infos_associacoes);
+  } else { 
+      const associacoesElems = infos_associacoes.querySelectorAll('.associacoes');
+      associacoesElems.forEach(elem => {
+        const texto = elem.textContent.trim();
+        compararValoresArray([texto], personagem_do_dia.Associações, elem);
+    });
+  }
   }
 });
 
@@ -110,23 +147,18 @@ function compararValores(valor1, valor2, elemento) {
 }
 
 function compararValoresArray(arr1, arr2, elemento) {
-  for (let i = 0; i < arr1.length; i++) {
-    for (let j = 0; j < arr2.length; j++) {
-      if (arr1[i] === arr2[j]) {
-        elemento.classList.add("certo");
-        return;
-      }
-    }
-  }
-}
+  elemento.classList.remove("certo", "errado");
 
-function setMeioDinamico(elemento, qtd) {
-  if (qtd % 2 !== 0)  {
-    qtd += 1;
-    const meio = qtd / 2;
-    elemento.style.gridColumn = `${meio}`;
-  } else{
-    // Terei que criar um abaguho imaginario se pá
+  if (!Array.isArray(arr1) || !Array.isArray(arr2)) {
+    elemento.classList.add("errado");
+    return;
+  }
+
+  const encontrado = arr1.some(item => arr2.includes(item));
+  if (encontrado) {
+    elemento.classList.add("certo");
+  } else {
+    elemento.classList.add("errado");
   }
 }
 
