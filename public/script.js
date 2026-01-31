@@ -1,7 +1,7 @@
 let personagensClient = [];
 async function carregarPersonagensClient() {
   try {
-    const res = await fetch("personagem.json");
+    const res = await fetch("public/personagem.json");
     const data = await res.json();
     personagensClient = Array.isArray(data) ? data : [data];
     console.log("Personagens carregados (client):", personagensClient);
@@ -65,7 +65,7 @@ input.addEventListener("keydown", async (e) => {
             </div>
           </div>
           <div class="imagem">
-            <img src="${personagem.Imagem}" alt="${personagem.Nome}">
+            <img src="public/${personagem.Imagem}" alt="${personagem.Nome}">
           </div>
       </div>`
     );
