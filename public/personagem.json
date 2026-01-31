@@ -35,9 +35,12 @@
         ],
         "Associações": [
             "Aluno de Xaj",
+            "Apófis",
             "Drácula",
             "Inimigo do Abismo",
+            "Líder",
             "Templo de Nosso Senhor da Luz",
+            "Portador de um Deus",
             "Rakin"
         ],
         "Maior_Status": [
@@ -72,8 +75,28 @@
             "Destreza",
             "Poder"
         ]
-    }
+    },
 
+    {
+        "Imagem": "imagens/Jimmy.png",
+        "Nome": "Jimmy Neighburn",
+        "Frase": "Primeiramente, não matamos, a menos que... talvez... por acaso... seja da Igreja de Rakin.",
+        "Estado": "Vivo",
+        "Raça": "Humano",
+        "Nacionalidade": "Estadunidense",
+        "Ocupação": [
+            "Gênio",
+            "Herói",
+            "Líder"
+        ],
+        "Associações": [
+            "Associação dos Heróis",
+            "Minus City"
+        ],
+        "Maior_Status": [
+            "Inteligência"
+        ]
+    }
 
 
 
