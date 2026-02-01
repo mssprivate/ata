@@ -26,6 +26,21 @@ body {
     
 }
 
+.vida {
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.era {
+    font-size: 30px;
+    color: #ff0000;
+    margin: 30px;
+    margin-left: 500px;
+    text-align: center; 
+    display: inline;
+}
 .background-cinza {
     width: 1300px;
     height: 690px;
@@ -34,6 +49,9 @@ body {
     display: grid;
     align-items: center;
     grid-template-columns: 2fr 1fr;
+    transition: border 0.5s, box-shadow 0.5s;
+    animation: piscar 1s infinite;
+    animation-direction: alternate;
 }
 
 .palavrinhas {

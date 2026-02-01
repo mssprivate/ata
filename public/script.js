@@ -25,6 +25,9 @@ carregarPersonagem();
 
 const input = document.getElementById("palavraInput");
 const kekw = document.getElementById("kekw");
+const vida = document.querySelector(".vida");
+let tentativas = 0;
+const maxTentativas = 10;
 
 input.addEventListener("keydown", async (e) => {
   if (e.key === "Enter") {
@@ -37,7 +40,8 @@ input.addEventListener("keydown", async (e) => {
     
     
     if (!personagem) return;
-  
+    tentativas++;
+    vida.textContent = `Tentativas: ${tentativas}/${maxTentativas}`;
 
     kekw.insertAdjacentHTML(
       "afterbegin",
@@ -115,7 +119,6 @@ input.addEventListener("keydown", async (e) => {
       });
     }
 
-
     if (!Array.isArray(personagem.Ocupação)){
       compararValores(personagem.Ocupação, personagem_do_dia.Ocupação, infos_ocupacao);
     } else {
@@ -128,15 +131,38 @@ input.addEventListener("keydown", async (e) => {
 
     if (!Array.isArray(personagem.Associações)){
      compararValores(personagem.Associações, personagem_do_dia.Associações, infos_associacoes);
-  } else { 
-      const associacoesElems = infos_associacoes.querySelectorAll('.associacoes');
-      associacoesElems.forEach(elem => {
-        const texto = elem.textContent.trim();
-        compararValoresArray([texto], personagem_do_dia.Associações, elem);
-    });
-  }
+    } else { 
+        const associacoesElems = infos_associacoes.querySelectorAll('.associacoes');
+        associacoesElems.forEach(elem => {
+          const texto = elem.textContent.trim();
+          compararValoresArray([texto], personagem_do_dia.Associações, elem);
+      });
+    }
+
+    if (personagem.Nome.toLowerCase() === personagem_do_dia.Nome.toLowerCase()) {
+      const background = kekw.querySelector(".background-cinza");
+      input.disabled = true;
+      input.placeholder = "Você acertou!";
+      background.style.border = "10px solid green";
+      background.style.boxShadow = "0 0 20px green";
+      background.style.borderRadius = "15px";
+      criarConfetes();
+    } else if (tentativas >= maxTentativas) {
+      const background = kekw.querySelector(".background-cinza");
+      const era = document.querySelector(".era");
+      era.textContent = `O personagem do dia era: ${personagem_do_dia.Nome}`;
+      input.disabled = true;
+      input.placeholder = 'Fim de jogo!';
+      background.style.border = "10px solid red";
+      background.style.boxShadow = "0 0 20px red";
+      background.style.borderRadius = "15px";
+      era.style.backgroundColor = "#552f8e5f";
+      era.style.padding = "10px";
+      era.style.borderRadius = "10px";
+    }
   }
 });
+
 
 function compararValores(valor1, valor2, elemento) {
   if (valor1 === valor2) {
@@ -164,4 +190,56 @@ function compararValoresArray(arr1, arr2, elemento) {
 
 function setColunasDinamicas(elemento, qtd) {
   elemento.style.gridTemplateColumn = `repeat(${qtd}, auto)`;
+}
+
+function criarConfetes() {
+  const cores = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E2'];
+  const quantidadeConfetes = 50;
+
+  for (let i = 0; i < quantidadeConfetes; i++) {
+    const confete = document.createElement('div');
+    confete.style.position = 'fixed';
+    confete.style.width = '10px';
+    confete.style.height = '10px';
+    confete.style.backgroundColor = cores[Math.floor(Math.random() * cores.length)];
+    confete.style.borderRadius = '50%';
+    confete.style.left = Math.random() * 100 + '%';
+    confete.style.top = '-10px';
+    confete.style.pointerEvents = 'none';
+    confete.style.zIndex = '9999';
+    confete.style.boxShadow = '0 0 10px rgba(0,0,0,0.3)';
+    
+    document.body.appendChild(confete);
+
+    const duracao = 4000 + Math.random() * 2000;
+    const delay = Math.random() * 100;
+    const velocidadeX = (Math.random() - 0.5) * 200;
+    
+    setTimeout(() => {
+      let posY = 0;
+      let posX = 0;
+      let rotacao = 0;
+      const startTime = Date.now();
+
+      const animar = () => {
+        const tempoDecorrido = Date.now() - startTime;
+        const progresso = tempoDecorrido / duracao;
+
+        if (progresso < 1) {
+          posY = progresso * window.innerHeight;
+          posX = velocidadeX * progresso;
+          rotacao = progresso * 720;
+
+          confete.style.transform = `translate(${posX}px, ${posY}px) rotate(${rotacao}deg)`;
+          confete.style.opacity = 1 - progresso;
+
+          requestAnimationFrame(animar);
+        } else {
+          confete.remove();
+        }
+      };
+
+      animar();
+    }, delay);
+  }
 }
