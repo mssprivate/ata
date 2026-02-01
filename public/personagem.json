@@ -37,6 +37,7 @@
             "Aluno de Xaj",
             "Apófis",
             "Drácula",
+            "Grandtown",
             "Inimigo do Abismo",
             "Líder",
             "Templo de Nosso Senhor da Luz",
@@ -96,10 +97,175 @@
         "Maior_Status": [
             "Inteligência"
         ]
+    },
+
+    {
+        "Imagem": "imagens/Jeremiah.png",
+        "Nome": "Jeremiah Eastwood",
+        "Frase": "Esse é o problema criança, eu estou morto e estou falando.",
+        "Estado": "Vivo",
+        "Raça": "Esqueleto",
+        "Nacionalidade": "Estadunidense",
+        "Ocupação": [
+            "Forasteiro"
+        ],
+        "Associações": [
+            "Morador do Abismo",
+            "Pestoise"
+        ],
+        "Maior_Status": [
+            "Destreza"
+        ]
+    },
+
+    {
+        "Imagem": "imagens/Jiao.png",
+        "Nome": "Gu Niang de Jiao Jiao",
+        "Frase": " É... demonios são estranhos",
+        "Estado": "Morto",
+        "Raça": "Demônio",
+        "Nacionalidade": "Inferno",
+        "Ocupação": [
+            "Andarilho"
+        ],
+        "Associações": [
+            "Rakin"
+        ],
+        "Maior_Status": [
+            "Destreza"
+        ]
+    },
+
+    {
+        "Imagem": "imagens/Nicole.png",
+        "Nome": "Nicole",
+        "Frase": "Se você fosse um esqueleto estaria 5 palmos abaixo do chão.",
+        "Estado": "Vivo",
+        "Raça": "Vampiro",
+        "Nacionalidade": "Brasileiro",
+        "Ocupação": [
+            "Herói",
+            "Jardineiro"
+        ],
+        "Associações": [
+            "Associação dos Heróis",
+            "Foreign",
+            "Jogos do King",
+            "Minus City"
+        ],
+        "Maior_Status": [
+            "Brigar",
+            "Constituição",
+            "Poder"
+        ]
+    },
+
+    {
+        "Imagem": "imagens/Henry.png",
+        "Nome": "Henry Talon",
+        "Frase": "Não serei eu que vai morrer, Spawn, pode ficar tranquilo.",
+        "Estado": "Morto",
+        "Raça": "Humano Hélio",
+        "Nacionalidade": "Estadunidense",
+        "Ocupação": [
+            "Herói",
+            "Justiceiro"
+        ],
+        "Associações": [
+            "Associação dos Heróis",
+            "Minus City",
+            "Os Secretários da Justiça"
+        ],
+        "Maior_Status": [
+            "Inteligência"
+        ]
+    },
+
+    {
+        "Imagem": "imagens/Mike.png",
+        "Nome": "Mike",
+        "Frase": "Mike Mikezada na área!",
+        "Estado": "Vivo",
+        "Raça": "Humano",
+        "Nacionalidade": "Estadunidense",
+        "Ocupação": [
+            "Herói",
+            "Maquinista",
+            "MVP"
+        ],
+        "Associações": [
+            "Associação dos Heróis",
+            "Jogos do King",
+            "Minus City"
+        ],
+        "Maior_Status": [
+            "Destreza",
+            "Poder"
+        ]
+    },
+
+
+    {
+        "Imagem": "imagens/Mike.png",
+        "Nome": "Mike",
+        "Frase": "Mike Mikezada na área!",
+        "Estado": "Vivo",
+        "Raça": "Humano",
+        "Nacionalidade": "Estadunidense",
+        "Ocupação": [
+            "Herói",
+            "Maquinista"
+        ],
+        "Associações": [
+            "Associação dos Heróis",
+            "Minus City"
+        ],
+        "Maior_Status": [
+            "Destreza",
+            "Poder"
+        ]
+    },
+
+    {
+        "Imagem": "imagens/Niray.png",
+        "Nome": "Niray",
+        "Frase": "Obri gada",
+        "Estado": "Morto",
+        "Raça": "Humano",
+        "Nacionalidade": "Guatemalense",
+        "Ocupação": [
+            "Moradora de rua"
+        ],
+        "Associações": [
+            "Blazer",
+            "Canibal",
+            "Gangue do Jinn",
+            "Mansão abandonada"
+        ],
+        "Maior_Status": [
+            "Furtividade"
+        ]
+    },
+
+    {
+        "Imagem": "imagens/Mhat.png",
+        "Nome": "Mhat Loose",
+        "Frase": "Comi, mas ele tá vivo.",
+        "Estado": "Morto",
+        "Raça": "Humano sapo",
+        "Nacionalidade": "Guatemalense",
+        "Ocupação": [
+            "Apostador",
+            "Trono"
+        ],
+        "Associações": [
+            "Grandtown",
+            "Hang Looser"
+        ],
+        "Maior_Status": [
+            "Constituição"
+        ]
     }
-
-
-
-
+    
 
 ]

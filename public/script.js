@@ -19,7 +19,29 @@ async function carregarPersonagem() {
   if (!personagensClient || personagensClient.length === 0) {
     await carregarPersonagensClient();
   }
-  personagem_do_dia = personagensClient.find(p => p && p.Nome && p.Nome.toLowerCase() === "bolsonaro");
+  
+  const hoje = new Date().toDateString();
+  const dadosArmazenados = localStorage.getItem('personagem_do_dia');
+  
+  if (dadosArmazenados) {
+    const { data, nome } = JSON.parse(dadosArmazenados);
+    
+    // Se for o mesmo dia, usa o personagem armazenado
+    if (data === hoje) {
+      personagem_do_dia = personagensClient.find(p => p && p.Nome && p.Nome.toLowerCase() === nome.toLowerCase());
+      return;
+    }
+  }
+  
+  // Se não houver armazenado ou for outro dia, sorteia um novo
+  const indiceAleatorio = Math.floor(Math.random() * personagensClient.length);
+  personagem_do_dia = personagensClient[indiceAleatorio];
+  
+  // Armazena o novo personagem do dia com a data
+  localStorage.setItem('personagem_do_dia', JSON.stringify({
+    data: hoje,
+    nome: personagem_do_dia.Nome
+  }));
 }
 carregarPersonagem();
 
