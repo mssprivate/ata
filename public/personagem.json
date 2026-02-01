@@ -8,7 +8,8 @@
         "Nacionalidade": "Estadunidense",
         "Ocupação": [
             "Político",
-            "Portador do Minotauro"
+            "Portador do Minotauro",
+            "Rakinista"
         ],
         "Associações": [
             "Minotauro",
@@ -31,10 +32,11 @@
         "Raça": "Vampiro",
         "Nacionalidade": "Chinês",
         "Ocupação": [
-            "Padre"
+            "Padre",
+            "Rakinista"
         ],
         "Associações": [
-            "Aluno de Xaj",
+            "Abismo",
             "Apófis",
             "Drácula",
             "Grandtown",
@@ -62,15 +64,17 @@
             "Ex-presidiário",
             "Ladrão",
             "Portador da Apófis",
-            "Programador"
+            "Programador",
+            "Rakinista",
+            "Usuário do Abismo"
         ],
         "Associações": [
+            "Abismo",
             "Apófis",
             "Minus City",
             "Nemus",
             "Portador de um Deus",
-            "Rakin",
-            "Usuário do Abismo"
+            "Rakin"
         ],
         "Maior_Status": [
             "Destreza",
@@ -107,10 +111,12 @@
         "Raça": "Esqueleto",
         "Nacionalidade": "Estadunidense",
         "Ocupação": [
-            "Forasteiro"
+            "Cowboy",
+            "Forasteiro",
+            "Morador do Abismo"
         ],
         "Associações": [
-            "Morador do Abismo",
+            "Abismo",
             "Pestoise"
         ],
         "Maior_Status": [
@@ -129,6 +135,7 @@
             "Andarilho"
         ],
         "Associações": [
+            "Helltaker",
             "Rakin"
         ],
         "Maior_Status": [
@@ -204,28 +211,6 @@
         ]
     },
 
-
-    {
-        "Imagem": "imagens/Mike.png",
-        "Nome": "Mike",
-        "Frase": "Mike Mikezada na área!",
-        "Estado": "Vivo",
-        "Raça": "Humano",
-        "Nacionalidade": "Estadunidense",
-        "Ocupação": [
-            "Herói",
-            "Maquinista"
-        ],
-        "Associações": [
-            "Associação dos Heróis",
-            "Minus City"
-        ],
-        "Maior_Status": [
-            "Destreza",
-            "Poder"
-        ]
-    },
-
     {
         "Imagem": "imagens/Niray.png",
         "Nome": "Niray",
@@ -259,11 +244,33 @@
             "Trono"
         ],
         "Associações": [
+            "Abismo",
             "Grandtown",
             "Hang Looser"
         ],
         "Maior_Status": [
             "Constituição"
+        ]
+    },
+
+    {
+        "Imagem": "imagens/Dom.png",
+        "Nome": "Dom Guilherme",
+        "Estado": "Morto",
+        "Frase": "Eu sou Dom Guilherme, e quem é você, Madeline?",
+        "Raça": "Humano",
+        "Nacionalidade": "Chinês",
+        "Ocupação": [
+            "Portador da Praga",
+            "Princípe"
+        ],
+        "Associações": [
+            "Abismo",
+            "Grandtown",
+            "Pestoise"
+        ],
+        "Maior_Status": [
+            "Inteligência"
         ]
     }
     
